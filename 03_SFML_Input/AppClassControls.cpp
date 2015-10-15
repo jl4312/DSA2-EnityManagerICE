@@ -26,17 +26,17 @@ void AppClass::ProcessKeyboard(void)
 	if(bModifier)
 		fSpeed *= 10.0f;
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-		m_pCamera->MoveForward(fSpeed);
+		m_pCameraMngr->MoveForward(fSpeed);
 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-		m_pCamera->MoveForward(-fSpeed);
+		m_pCameraMngr->MoveForward(-fSpeed);
 	
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		m_pCamera->MoveSideways(-fSpeed);
+		m_pCameraMngr->MoveSideways(-fSpeed);
 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		m_pCamera->MoveSideways(fSpeed);
-	m_pCamera->CalculateView();
+		m_pCameraMngr->MoveSideways(fSpeed);
+	m_pCameraMngr->CalculateView();
 #pragma endregion
 
 #pragma region Other Actions
@@ -85,28 +85,28 @@ void AppClass::ProcessJoystick(void)
 		{
 			fAngleX = 0.0f;
 			fAngleY = 0.0f;
-			m_pCamera->SetPosition(glm::vec3( 0.0f, 0.0f, 10.0f));
+			m_pCameraMngr->SetPosition(glm::vec3(0.0f, 0.0f, 10.0f));
 		}
 
 		float fDelta = sf::Joystick::getAxisPosition(nPad, sf::Joystick::Y);
 		if(fDelta > 20 || fDelta < -20)
 		{
 			fDelta *= fSpeed;
-			m_pCamera->MoveForward(-fDelta);
+			m_pCameraMngr->MoveForward(-fDelta);
 		}
 		
 		fDelta = sf::Joystick::getAxisPosition(nPad, sf::Joystick::X);
 		if(fDelta > 20 || fDelta < -20)
 		{
 			fDelta *= fSpeed;
-			m_pCamera->MoveSideways(fDelta);
+			m_pCameraMngr->MoveSideways(fDelta);
 		}
 
 		fDelta = sf::Joystick::getAxisPosition(nPad, sf::Joystick::Z);
 		if(fDelta > 20 || fDelta < -20)
 		{
 			fDelta *= fSpeed;
-			m_pCamera->MoveVertical(fDelta);
+			m_pCameraMngr->MoveVertical(fDelta);
 		}
 
 		fDelta = -sf::Joystick::getAxisPosition(nPad, sf::Joystick::R);
@@ -122,9 +122,9 @@ void AppClass::ProcessJoystick(void)
 			fAngleY -= fDelta * fSpeed;
 			fAngleY *= 20.0f;
 		}
-		m_pCamera->ChangeHeading(fAngleY);
-		m_pCamera->ChangePitch(fAngleX);
-		m_pCamera->CalculateView();
+		m_pCameraMngr->ChangeYaw(fAngleY);
+		m_pCameraMngr->ChangePitch(fAngleX);
+		m_pCameraMngr->CalculateView();
 #pragma endregion
 	}
 }

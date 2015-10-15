@@ -193,8 +193,8 @@ public:
 	/* Asks the manager to generate a ray from the point of vew of the camera and the mouse coordinates, last argument will aks if the method should draw the ray*/
 	vector2 ShootRay(vector4 a_v4RayOrigin, vector4 a_v4RayEnd, int a_nIgnoreInstance = -1, bool a_bDrawRay = false);
 	vector2 ShootRay(vector4 a_v4RayOrigin, vector4 a_v4RayEnd, String a_sInstanceName, bool a_bDrawRay = false);
-	vector2 ShootRay(int a_nMouseX, int a_nMouseY, CameraSingleton* a_pCamera, int a_nIgnoreInstance = -1, bool a_bDrawRay = false);
-	vector2 ShootRay(int a_nMouseX, int a_nMouseY, CameraSingleton* a_pCamera, String a_sInstanceName, bool a_bDrawRay = false);
+	vector2 ShootRay(int a_nMouseX, int a_nMouseY, CameraManagerSingleton* a_pCamera, int a_nIgnoreInstance = -1, bool a_bDrawRay = false);
+	vector2 ShootRay(int a_nMouseX, int a_nMouseY, CameraManagerSingleton* a_pCamera, String a_sInstanceName, bool a_bDrawRay = false);
 	
 	/* Asks the manager for the instance and group a ray is colliding with. will return -1 for both instance or group if no collision is detected */
 	vector2 CheckCollission(vector3 a_v3RayOrigin, vector3 a_v3RayDirection, int a_nIgnoreInstance = -1);

@@ -36,7 +36,7 @@ Date: 2015/06
 #include "RE\Mesh\PrimitiveManagerSingleton.h" //Creates and manages the Primitive objects
 #include "RE\Mesh\ModelManagerSingleton.h" //Manages models and instances
 
-#include "RE\Camera\CameraSingleton.h" //Creates and manages the camera object for the world
+#include "RE\Camera\CameraManagerSingleton.h" //Creates and manages the camera object for the world
 
 /*
 	MapValue
@@ -79,7 +79,7 @@ static void ReleaseAllSingletons(void)
 	TextureManagerSingleton::ReleaseInstance();
 	LineManagerSingleton::ReleaseInstance();
 	ModelManagerSingleton::ReleaseInstance();
-	CameraSingleton::ReleaseInstance();
+	CameraManagerSingleton::ReleaseInstance();
 	OctreeSingleton::ReleaseInstance();
 	FolderSingleton::ReleaseInstance();
 	GLSystemSingleton::ReleaseInstance();

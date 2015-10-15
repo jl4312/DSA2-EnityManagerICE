@@ -65,6 +65,9 @@ public:
 	
 	/* Renders the sphere on the specified position*/
 	void AddSphereToQueue(matrix4 a_m4ToWorld, vector3 a_v3Color = REDEFAULT, int a_RenderOption = RERENDER::SOLID | RERENDER::WIRE);
+
+	/* Renders a camera shape on the specified position */
+	void AddCameraToQueue(matrix4 a_m4ToWorld, vector3 a_v3Color = REDEFAULT);
 	
 private:
 	/* Constructor */

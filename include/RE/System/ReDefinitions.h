@@ -126,6 +126,13 @@ enum RERENDER
 	SOLID = 1,
 	WIRE = 2,
 };
+enum CAMERAMODE
+{
+	CAMPERSP = 0,
+	CAMROTHOX = 1,
+	CAMROTHOY = 2,
+	CAMROTHOZ = 3,
+};
 
 
 }

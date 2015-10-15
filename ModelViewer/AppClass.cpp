@@ -10,7 +10,7 @@ void AppClass::InitWindow(String a_sWindowName)
 }
 void AppClass::InitVariables(void)
 {
-	m_pCamera->SetPosition(REAXISZ * 15.0f);
+	m_pCameraMngr->SetPosition(REAXISZ * 15.0f);
 
 	m_sSelectedObject = "";
 }

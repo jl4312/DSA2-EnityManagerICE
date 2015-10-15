@@ -46,7 +46,7 @@ void AppClass::Update(void)
 		CameraRotation();
 
 	//Calculate Camera
-	m_pCamera->CalculateView();
+	m_pCameraMngr->CalculateView();
 
 	//print info into the console
 	printf("FPS: %d            \r", m_pSystem->GetFPS());//print the Frames per Second

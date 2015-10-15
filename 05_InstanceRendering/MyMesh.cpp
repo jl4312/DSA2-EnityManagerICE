@@ -9,7 +9,7 @@ void MyMesh::Init(void)
 	m_VertexBuffer = 0;
 	m_ColorBuffer = 0;
 
-	m_pCamera = CameraSingleton::GetInstance();;
+	m_pCamera = CameraManagerSingleton::GetInstance();;
 	m_pShaderMngr = ShaderManagerSingleton::GetInstance();
 	FolderSingleton* pFolder = FolderSingleton::GetInstance();
 

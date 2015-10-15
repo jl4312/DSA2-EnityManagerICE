@@ -10,6 +10,7 @@ void AppClass::InitWindow(String a_sWindowName)
 }
 void AppClass::InitVariables(void)
 {
+	
 }
 
 void AppClass::Update(void)

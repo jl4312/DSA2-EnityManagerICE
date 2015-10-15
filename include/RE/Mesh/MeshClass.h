@@ -6,7 +6,7 @@ Date: 2015/06
 #define __MESHCLASS_H_
 
 #include "RE\System\SystemSingleton.h"
-#include "RE\Camera\CameraSingleton.h"
+#include "RE\Camera\CameraManagerSingleton.h"
 #include "RE\Materials\MaterialManagerSingleton.h"
 #include "RE\Light\LightManagerSingleton.h"
 #include "RE\System\ShaderManagerSingleton.h"
@@ -35,7 +35,7 @@ protected:
 	GLuint m_nShader = 0;	//Index of the shader
 	GLuint m_nShaderO = 0;	//Index of the original shader
 
-	CameraSingleton* m_pCamera = nullptr;				//Pointer to the singleton of CameraSingleton
+	CameraManagerSingleton* m_pCamera = nullptr;				//Pointer to the singleton of CameraSingleton
 	MaterialManagerSingleton* m_pMatMngr = nullptr;		//Material Manager
 	LightManagerSingleton* m_pLightMngr = nullptr;		//Light Manager
 	ShaderManagerSingleton* m_pShaderMngr = nullptr;	//Shader Manager

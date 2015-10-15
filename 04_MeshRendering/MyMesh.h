@@ -11,7 +11,7 @@ for better functionality.
 #define __MyMesh_H_
 
 #include "RE\System\SystemSingleton.h"
-#include "RE\Camera\CameraSingleton.h"
+#include "RE\Camera\CameraManagerSingleton.h"
 #include "RE\Materials\MaterialManagerSingleton.h"
 #include "RE\Light\LightManagerSingleton.h"
 #include "RE\System\ShaderManagerSingleton.h"
@@ -29,7 +29,7 @@ protected:
 	GLuint m_VertexBuffer = 0;	//OpenGL Buffer (Will hold the vertex buffer pointer)
 	GLuint m_ColorBuffer = 0;	//OpenGL Buffer (Will hold the color buffer pointer)
 
-	CameraSingleton* m_pCamera = nullptr;				//Pointer to the singleton of CameraSingleton
+	CameraManagerSingleton* m_pCamera = nullptr;				//Pointer to the singleton of CameraSingleton
 	ShaderManagerSingleton* m_pShaderMngr = nullptr;	//Shader Manager
 
 	std::vector<vector3> m_lVertexPos;	//List of Vertices

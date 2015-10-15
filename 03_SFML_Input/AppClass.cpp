@@ -33,7 +33,7 @@ void AppClass::Update(void)
 	m_pMeshMngr->AddInstanceToRenderList("Steve");
 
 	//Calculate Camera
-	m_pCamera->CalculateView();
+	m_pCameraMngr->CalculateView();
 
 	//print info into the console
 	printf("FPS: %d            \r", m_pSystem->GetFPS());//print the Frames per Second

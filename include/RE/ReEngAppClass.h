@@ -38,7 +38,7 @@ namespace ReEng
 		MeshManagerSingleton* m_pMeshMngr = nullptr;//Mesh Manager
 
 		GridClass* m_pGrid = nullptr; // Grid that represents the Coordinate System
-		CameraSingleton* m_pCamera = nullptr; // Singleton for the camera that represents our scene
+		CameraManagerSingleton* m_pCameraMngr = nullptr; // Singleton for the camera that represents our scene
 		vector4 m_v4ClearColor; //Color of the scene
 		quaternion m_qArcBall; //ArcBall quaternion
 
@@ -165,8 +165,8 @@ namespace ReEng
 			LineManagerSingleton* m_pLineManager = LineManagerSingleton::GetInstance();
 
 			// Setting the camera position.
-			m_pCamera = CameraSingleton::GetInstance();
-			m_pCamera->SetPosition(vector3(0.0f, 0.5f, 10.0f));
+			m_pCameraMngr = CameraManagerSingleton::GetInstance();
+			m_pCameraMngr->SetPosition(vector3(0.0f, 0.5f, 10.0f));
 
 			// Initialize the App Variables
 			InitVariables();
@@ -282,8 +282,8 @@ namespace ReEng
 				DeltaMouse = static_cast<float>(MouseY - CenterY);
 				fAngleX += DeltaMouse * a_fSpeed;
 			}
-			m_pCamera->ChangeHeading(fAngleY * 3.0f);//fAngleY and fAngleX are no longer static, the value is saved inside of the camera object
-			m_pCamera->ChangePitch(-fAngleX * 3.0f);
+			m_pCameraMngr->ChangeYaw(fAngleY * 3.0f);//fAngleY and fAngleX are no longer static, the value is saved inside of the camera object
+			m_pCameraMngr->ChangePitch(-fAngleX * 3.0f);
 		}
 
 		/*
@@ -536,7 +536,7 @@ namespace ReEng
 			if (m_bFPC == true)
 				CameraRotation();
 
-			m_pCamera->CalculateView();
+			m_pCameraMngr->CalculateView();
 
 			//print info into the console
 			printf("FPS: %d            \r", m_pSystem->GetFPS());//print the Frames per Second

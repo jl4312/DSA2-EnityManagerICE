@@ -92,6 +92,9 @@ public:
 	/* Renders the sphere on the specified position*/
 	void AddSphereToQueue(matrix4 a_m4ToWorld, vector3 a_v3Color = REDEFAULT, int a_RenderOption = RERENDER::SOLID | RERENDER::WIRE);
 
+	/* Renders the CameraMesh on the specified position*/
+	void AddCameraToQueue(matrix4 a_m4ToWorld, vector3 a_v3Color = REDEFAULT);
+
 	/* Renders the specified instance */
 	void AddInstanceToRenderList(String a_sInstance = "ALL");
 
