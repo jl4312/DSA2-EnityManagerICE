@@ -23,6 +23,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BoundingSpheresDEMO", "Boun
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "11_BoundingSpheres", "11_BoundingSpheres\11_BoundingSpheres.vcxproj", "{90A9F571-FF78-4491-B219-BBB483D67CDE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sierpinski", "E10s_Sierpinski\Sierpinski.vcxproj", "{FACFC9C0-1F4B-424A-9A54-1ED2A6979E4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -69,6 +71,10 @@ Global
 		{90A9F571-FF78-4491-B219-BBB483D67CDE}.Debug|Win32.Build.0 = Debug|Win32
 		{90A9F571-FF78-4491-B219-BBB483D67CDE}.Release|Win32.ActiveCfg = Release|Win32
 		{90A9F571-FF78-4491-B219-BBB483D67CDE}.Release|Win32.Build.0 = Release|Win32
+		{FACFC9C0-1F4B-424A-9A54-1ED2A6979E4F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FACFC9C0-1F4B-424A-9A54-1ED2A6979E4F}.Debug|Win32.Build.0 = Debug|Win32
+		{FACFC9C0-1F4B-424A-9A54-1ED2A6979E4F}.Release|Win32.ActiveCfg = Release|Win32
+		{FACFC9C0-1F4B-424A-9A54-1ED2A6979E4F}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
