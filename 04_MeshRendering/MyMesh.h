@@ -64,7 +64,7 @@ public:
 	virtual void RenderList(float* a_fMatrixArray, int a_nInstances);
 
 	/* Renders the shape asking for its position in the world and a color */
-	virtual void Render(matrix4 a_mToWorld = REIDENTITY);
+	virtual void Render(matrix4 a_mToWorld = IDENTITY_M4);
 
 protected:
 	/* Initialize the object's fields */

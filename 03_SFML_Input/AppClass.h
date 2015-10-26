@@ -21,6 +21,18 @@ public:
 	AppClass(HINSTANCE hInstance, LPWSTR lpCmdLine, int nCmdShow) : super(hInstance, lpCmdLine, nCmdShow) {}
 
 	/*
+	ReadConfig
+	Reads the configuration of the application to a file
+	*/
+	virtual void ReadConfig(void) final {}
+
+	/*
+	WriteConfig
+	Writes the configuration of the application to a file
+	*/
+	virtual void WriteConfig(void) final {}
+
+	/*
 	InitWindow
 	Initialize ReEng variables necessary to create the window
 	*/

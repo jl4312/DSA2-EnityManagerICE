@@ -122,6 +122,11 @@ xcopy "$(SolutionDir)_Binary\Shaders" "$(SolutionDir)include\RE\Shaders" /y</Com
   <ItemGroup>
     <ResourceCompile Include="..\res\BTO.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ReEngine\Solution.vcxproj">
+      <Project>{8ea187de-bda5-4f0c-b796-164f7fa45eb5}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

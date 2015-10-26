@@ -39,7 +39,11 @@ void AppClass::ProcessKeyboard(void)
 #pragma endregion
 
 #pragma region Other Actions
-	ON_KEY_PRESS_RELEASE(Escape,NULL,PostMessage(m_pWindow->GetHandler(), WM_QUIT, NULL, NULL))
+	ON_KEY_PRESS_RELEASE(Escape, NULL, PostMessage(m_pWindow->GetHandler(), WM_QUIT, NULL, NULL));
+	ON_KEY_PRESS_RELEASE(F1, NULL, m_pCameraMngr->SetCameraMode(CAMPERSP));
+	ON_KEY_PRESS_RELEASE(F2, NULL, m_pCameraMngr->SetCameraMode(CAMROTHOZ));
+	ON_KEY_PRESS_RELEASE(F3, NULL, m_pCameraMngr->SetCameraMode(CAMROTHOY));
+	ON_KEY_PRESS_RELEASE(F4, NULL, m_pCameraMngr->SetCameraMode(CAMROTHOX));
 #pragma endregion
 }
 void AppClass::ProcessMouse(void)

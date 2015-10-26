@@ -42,6 +42,7 @@ typedef std::string String;
 typedef glm::vec2 vector2;
 typedef glm::vec3 vector3;
 typedef glm::vec4 vector4;
+typedef glm::mat3 matrix3;
 typedef glm::mat4 matrix4;
 typedef unsigned int uint;
 typedef glm::quat quaternion;
@@ -58,8 +59,7 @@ typedef glm::quat quaternion;
 //	} 
 //}
 #define PI 3.14159265358979323846
-#define IDENTITY 1.0f
-#define REIDENTITY matrix4()
+#define IDENTITY_M4 matrix4(1.0f)
 
 #define REBLACK vector3(0.0f, 0.0f, 0.0f)
 #define REWHITE vector3(1.0f, 1.0f, 1.0f)
@@ -83,7 +83,7 @@ typedef glm::quat quaternion;
 
 #define REDEFAULT vector3(-1.0f, -1.0f, -1.0f)
 
-#define REVECTORZERO vector3(0.0f, 0.0f, 0.0f)
+#define ZERO_V3 vector3(0.0f, 0.0f, 0.0f)
 #define REAXISX vector3(1.0f, 0.0f, 0.0f)
 #define REAXISY vector3(0.0f, 1.0f, 0.0f)
 #define REAXISZ vector3(0.0f, 0.0f, 1.0f)
