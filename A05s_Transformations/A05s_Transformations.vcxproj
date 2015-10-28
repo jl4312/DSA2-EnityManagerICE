@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{3967FCB2-CF32-4899-9E66-1F888500EEE0}</ProjectGuid>
-    <RootNamespace>E12_BoundingBoxClass</RootNamespace>
-    <ProjectName>E12_BoundingBoxClass</ProjectName>
+    <ProjectGuid>{A3C2E143-5662-40DC-9C80-CB521539A806}</ProjectGuid>
+    <RootNamespace>A05s_Transformations</RootNamespace>
+    <ProjectName>A05s_Transformations</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -113,13 +113,16 @@ xcopy "$(SolutionDir)_Binary\Shaders" "$(SolutionDir)include\RE\Shaders" /y</Com
   <ItemGroup>
     <ClCompile Include="AppClass.cpp" />
     <ClCompile Include="AppClassControls.cpp" />
-    <ClCompile Include="MyBoundingBoxClass.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MyMesh.cpp" />
+    <ClCompile Include="MyPrimitive.cpp" />
+    <ClCompile Include="MyPrimitiveShapes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\res\Resource.h" />
     <ClInclude Include="AppClass.h" />
-    <ClInclude Include="MyBoundingBoxClass.h" />
+    <ClInclude Include="MyMesh.h" />
+    <ClInclude Include="MyPrimitive.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\res\BTO.rc" />

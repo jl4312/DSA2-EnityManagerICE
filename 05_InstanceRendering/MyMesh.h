@@ -7,17 +7,11 @@ of functionality in order to focuss on important
 concepts of OpenGL, please use a MeshClass object
 for better functionality.
 ----------------------------------------------*/
-#ifndef __MyMesh_H_
-#define __MyMesh_H_
+#ifndef __MYMESH_H_
+#define __MYMESH_H_
 
-#include "RE\System\SystemSingleton.h"
-#include "RE\Camera\CameraManagerSingleton.h"
-#include "RE\Materials\MaterialManagerSingleton.h"
-#include "RE\Light\LightManagerSingleton.h"
-#include "RE\System\ShaderManagerSingleton.h"
-#include <vector>
+#include "RE\ReEng.h"
 
-using namespace ReEng;
 //System Class
 class MyMesh
 {
@@ -29,7 +23,6 @@ protected:
 	GLuint m_VertexBuffer = 0;	//OpenGL Buffer (Will hold the vertex buffer pointer)
 	GLuint m_ColorBuffer = 0;	//OpenGL Buffer (Will hold the color buffer pointer)
 
-	CameraManagerSingleton* m_pCamera = nullptr;				//Pointer to the singleton of CameraSingleton
 	ShaderManagerSingleton* m_pShaderMngr = nullptr;	//Shader Manager
 
 	std::vector<vector3> m_lVertexPos;	//List of Vertices
@@ -61,10 +54,10 @@ public:
 	void AddVertexColor(vector3 a_v3Input);
 
 	/* Renders the shape */
-	virtual void RenderList(float* a_fMatrixArray, int a_nInstances);
+	virtual void RenderList(matrix4 a_mProjectionMatrix, matrix4 a_mViewMatrix, float* a_fMatrixArray, int a_nInstances);
 
 	/* Renders the shape asking for its position in the world and a color */
-	virtual void Render(matrix4 a_mToWorld = IDENTITY_M4);
+	virtual void Render(matrix4 a_mProjectionMatrix, matrix4 a_mViewMatrix, matrix4 a_mToWorld = IDENTITY_M4);
 
 protected:
 	/* Initialize the object's fields */
@@ -79,4 +72,4 @@ public:
 	void CompleteTriangleInfo(void);
 };
 
-#endif //__MyMesh_H_
+#endif //__MYMESH_H_

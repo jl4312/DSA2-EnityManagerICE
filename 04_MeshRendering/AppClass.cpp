@@ -19,7 +19,6 @@ void AppClass::InitVariables(void)
 	m_pMesh->AddVertexColor(REBLUE);
 	
 	m_pMesh->CompileOpenGL3X();
-
 }
 
 void AppClass::Update(void)
@@ -27,6 +26,7 @@ void AppClass::Update(void)
 	//Update the system so it knows how much time has passed since the last call
 	m_pSystem->UpdateTime();
 
+	//Call the arcball method
 	ArcBall();
 
 	//Is the first person camera active?
@@ -50,7 +50,8 @@ void AppClass::Display(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the window
 
-	m_pMesh->Render(ToMatrix4(m_qArcBall));
+	//Render the Mesh
+	m_pMesh->Render(m_pCameraMngr->GetProjectionMatrix(), m_pCameraMngr->GetViewMatrix(), ToMatrix4(m_qArcBall));
 
 	//Render the grid based on the camera's mode:
 	switch (m_pCameraMngr->GetCameraMode())
@@ -69,7 +70,7 @@ void AppClass::Display(void)
 		break;
 	}
 
-	m_pMeshMngr->Render();
+	m_pMeshMngr->Render(); //Render the contents of the Mesh Manager
 
 	m_pGLSystem->GLSwapBuffers(); //Swaps the OpenGL buffers
 }

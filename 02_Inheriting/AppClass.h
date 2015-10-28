@@ -34,14 +34,14 @@ public:
 	InitWindow
 	Initialize ReEng variables necessary to create the window
 	*/
-	virtual void InitWindow(String a_sWindowName);
+	virtual void InitWindow(String a_sWindowName) final;
 
 	/*
 	InitVariables
 	Initializes user specific variables, this is executed right after InitApplicationVariables,
 	the purpose of this member function is to initialize member variables specific for this lesson
 	*/
-	virtual void InitVariables(void);
+	virtual void InitVariables(void) final;
 };
 
 #endif //__APPLICATION_H_

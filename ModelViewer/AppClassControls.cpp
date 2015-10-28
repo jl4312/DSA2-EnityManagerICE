@@ -120,7 +120,7 @@ void AppClass::ProcessKeyboard(void)
 				float fSize = v3HalfWidth.x;
 				if (fSize < v3HalfWidth.y)
 					fSize = v3HalfWidth.y;
-				m_pCameraMngr->SetPositionAndView(v3Centroid + REAXISZ * 2.5f * fSize, v3Centroid);
+				m_pCameraMngr->SetPositionAndTarget(v3Centroid + REAXISZ * 2.5f * fSize, v3Centroid);
 			}
 
 			m_pSystem->SetThreaded(bThreaded);

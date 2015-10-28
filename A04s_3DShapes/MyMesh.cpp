@@ -9,7 +9,6 @@ void MyMesh::Init(void)
 	m_VertexBuffer = 0;
 	m_ColorBuffer = 0;
 
-	m_pCamera = CameraSingleton::GetInstance();;
 	m_pShaderMngr = ShaderManagerSingleton::GetInstance();
 	FolderSingleton* pFolder = FolderSingleton::GetInstance();
 
@@ -28,12 +27,10 @@ void MyMesh::Swap(MyMesh& other)
 	std::swap(m_lVertexPos, other.m_lVertexPos);
 	std::swap(m_lVertexCol, other.m_lVertexCol);
 
-	std::swap(m_pCamera, other.m_pCamera);
 	std::swap(m_pShaderMngr, other.m_pShaderMngr);
 }
 void MyMesh::Release(void)
 {
-	m_pCamera = nullptr;
 	m_pShaderMngr = nullptr;
 
 	if (m_ColorBuffer > 0)
@@ -62,7 +59,6 @@ MyMesh::MyMesh(MyMesh const& other)
 	m_lVertexPos = other.m_lVertexPos;
 	m_lVertexCol = other.m_lVertexCol;
 
-	m_pCamera = other.m_pCamera;
 	m_pShaderMngr = other.m_pShaderMngr;
 }
 MyMesh& MyMesh::operator=(MyMesh const& other)
@@ -116,7 +112,7 @@ void MyMesh::CompileOpenGL3X(void)
 
 	return;
 }
-void MyMesh::RenderList(float* a_fMatrixArray, int a_nInstances)
+void MyMesh::RenderList(matrix4 a_mProjectionMatrix, matrix4 a_mViewMatrix, float* a_fMatrixArray, int a_nInstances)
 {
 	if (!m_bBinded)
 		return;
@@ -132,8 +128,6 @@ void MyMesh::RenderList(float* a_fMatrixArray, int a_nInstances)
 	GLuint v4Position = glGetAttribLocation(nProgram, "Position_b");
 	GLuint v4Color = glGetAttribLocation(nProgram, "Color_b");
 
-	GLuint CameraPosition = glGetUniformLocation(nProgram, "CameraPosition");
-
 	GLuint gl_nInstances = glGetUniformLocation(nProgram, "nElements");
 
 	GLuint m4ToWorld = glGetUniformLocation(nProgram, "m4ToWorld");
@@ -142,12 +136,10 @@ void MyMesh::RenderList(float* a_fMatrixArray, int a_nInstances)
 	glUniformMatrix4fv(m4ModelToWorld, 1, GL_FALSE, glm::value_ptr(matrix4(1.0f)));
 
 	//Final Projection of the Camera
-	glUniformMatrix4fv(MVP, 1, GL_FALSE, glm::value_ptr(m_pCamera->GetVP()));
+	glUniformMatrix4fv(MVP, 1, GL_FALSE, glm::value_ptr(a_mProjectionMatrix * a_mViewMatrix));
 
 	glUniform1i(gl_nInstances, a_nInstances);
 	glUniformMatrix4fv(m4ToWorld, a_nInstances, GL_FALSE, a_fMatrixArray);
-
-	glUniform3f(CameraPosition, m_pCamera->GetPosition().x, m_pCamera->GetPosition().y, m_pCamera->GetPosition().z);
 
 	//position
 	glEnableVertexAttribArray(v4Position);
@@ -164,7 +156,7 @@ void MyMesh::RenderList(float* a_fMatrixArray, int a_nInstances)
 	glDisableVertexAttribArray(v4Position);
 	glDisableVertexAttribArray(v4Color);
 }
-void MyMesh::Render(matrix4 a_mToWorld)
+void MyMesh::Render(matrix4 a_mProjectionMatrix, matrix4 a_mViewMatrix, matrix4 a_mToWorld)
 {
 	if (!m_bBinded)
 		return;
@@ -182,7 +174,7 @@ void MyMesh::Render(matrix4 a_mToWorld)
 	GLuint v4Color = glGetAttribLocation(nProgram, "Color_b");
 	
 	//Final Projection of the Camera
-	glUniformMatrix4fv(MVP, 1, GL_FALSE, glm::value_ptr(m_pCamera->GetMVP(a_mToWorld)));
+	glUniformMatrix4fv(MVP, 1, GL_FALSE, glm::value_ptr(a_mProjectionMatrix * a_mViewMatrix * a_mToWorld));
 
 	//position
 	glEnableVertexAttribArray(v4Position);

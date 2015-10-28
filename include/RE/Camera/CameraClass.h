@@ -43,28 +43,32 @@ namespace ReEng
 		CameraClass(void);
 		/* Constructor with parameters */
 		/*
-		Method: Usage:
+		Method: 
+		Usage:
 		Arguments:
 		Output:
 		*/
 		CameraClass(vector3 a_v3Position, vector3 a_v3Target, vector3 a_v3Upward);
 		/* Copy Constructor */
 		/*
-		Method: Usage:
+		Method: 
+		Usage:
 		Arguments:
 		Output:
 		*/
 		CameraClass(CameraClass const& other);
 		/* Copy Assignment Operator*/
 		/*
-		Method: Usage:
+		Method: 
+		Usage:
 		Arguments:
 		Output:
 		*/
 		CameraClass& operator=(CameraClass const& other);
 		/* Destructor */
 		/*
-		Method: Usage:
+		Method: 
+		Usage:
 		Arguments: ---
 		Output: ---
 		*/
@@ -72,28 +76,32 @@ namespace ReEng
 
 		/* Gets the View matrix from the camera */
 		/*
-		Method: Usage:
+		Method: 
+		Usage:
 		Arguments: ---
 		Output:
 		*/
 		matrix4 GetViewMatrix(void);
 		/* Gets the Projection matrix from the camera */
 		/*
-		Method: Usage:
+		Method: 
+		Usage:
 		Arguments: ---
 		Output:
 		*/
 		matrix4 GetProjectionMatrix(void);
 		/* Gets the ModelViewProjection matrix from the camera */
 		/*
-		Method: Usage:
+		Method: 
+		Usage:
 		Arguments:
 		Output:
 		*/
 		matrix4 GetMVP(matrix4 a_m4ModelToWorld);
 		/* Gets the ViewProjection matrix from the camera */
 		/*
-		Method: Usage:
+		Method: 
+		Usage:
 		Arguments: ---
 		Output:
 		*/
@@ -101,7 +109,8 @@ namespace ReEng
 
 		/* Gets the position of the camera */
 		/*
-		Method: Usage:
+		Method: 
+		Usage:
 		Arguments: ---
 		Output:
 		*/
@@ -109,155 +118,173 @@ namespace ReEng
 
 		/* Changes the near and far planes */
 		/*
-		Method: Usage:
+		Method: 
+		Usage:
 		Arguments:
 		Output:
 		*/
 		void SetNearFarPlanes(float a_fNear, float a_fFar);
 		/* Calculates the projection based on the camera values */
 		/*
-		Method: Usage:
+		Method: 
+		Usage:
 		Arguments: ---
 		Output: ---
 		*/
 		void CalculateProjection(void);
 		/* Calculates the view based on the camera values */
 		/*
-		Method: Usage:
+		Method: 
+		Usage:
 		Arguments: ---
 		Output: ---
 		*/
 		void CalculateView(void);
 		/* Set Field of View */
 		/*
-		Method: Usage:
+		Method: 
+		Usage:
 		Arguments:
 		Output:
 		*/
 		void SetFOV(float a_fFOV);
 
-		/* Sets the camera at the specified position */
 		/*
-		Method: Usage:
+		Method: 
+		Usage: Sets the camera at the specified position
 		Arguments:
 		Output:
 		*/
-		void SetPosition(vector3 a_vPosition);
-		/* Sets the camera at the specified position and target */
+		void SetPosition(vector3 a_v3Position);
 		/*
-		Method: Usage:
+		Method:
+		Usage: Sets the target of the camera to the specified position
+		Arguments:
+			vector3 a_vTarget -> point to look at
+		Output:
+		*/
+		void SetTarget(vector3 a_v3Target);
+		/*
+		Method: 
+		Usage: Sets the camera at the specified position and target
 		Arguments:
 		Output:
 		*/
-		void SetPositionAndView(vector3 a_v3Position, vector3 a_v3Target);
+		void SetPositionAndTarget(vector3 a_v3Position, vector3 a_v3Target);
 
-		/* Gets the camera space just in front of the camera */
 		/*
-		Method: Usage:
+		Method: 
+		Usage: Gets the camera space just in front of the camera
 		Arguments: ---
 		Output:
 		*/
 		matrix4 GetCameraSpaceAdjusted(void);
-		/* Gets the camera plane of the camera */
+		
 		/*
-		Method: Usage:
+		Method: 
+		Usage: Gets the camera plane of the camera
 		Arguments: ---
 		Output:
 		*/
 		matrix4 GetCameraPlane(void);
 
-		/*	Translates the camera forward or backward */
 		/*
-		Method: Usage:
-		Arguments:
+		Method: 
+		Usage: Translates the camera forward or backward
+		Arguments: 
 		Output: ---
 		*/
 		void MoveForward(float a_fDistance = 0.1f);
-		/*	Translates the camera Upward or downward */
 		/*
-		Method: Usage:
-		Arguments:
+		Method: 
+		Usage: Translates the camera Upward or downward
+		Arguments: 
 		Output: ---
 		*/
 		void MoveVertical(float a_fDistance = 0.1f);
-		/*	Translates the camera right or left */
 		/*
-		Method: Usage:
+		Method: 
+		Usage: Translates the camera right or left
 		Arguments:
 		Output: ---
 		*/
 		void MoveSideways(float a_fDistance = 0.1f);
 
-		/*	Rotates the camera Pitch */
 		/*
-		Method: Usage:
-		Arguments:
+		Method: 
+		Usage: Rotates the camera Pitch
+		Arguments: 
 		Output: ---
 		*/
 		void ChangePitch(float a_fDegree = 0.01f);
-		/*	Rotates the camera Yaw */
+		
 		/*
-		Method: Usage:
+		Method: 
+		Usage: Rotates the camera Yaw
 		Arguments:
 		Output: ---
 		*/
 		void ChangeYaw(float a_fDegree = 0.01f);
-		/*	Rotates the camera Roll */
 		/*
-		Method: Usage:
+		Method: 
+		Usage: Rotates the camera Roll
 		Arguments:
 		Output: ---
 		*/
 		void ChangeRoll(float a_fDegree = 0.01f);
 
-		/* Sets the camera in First Person Shooter mode, if false it will work like an aircraft */
+		
 		/*
-		Method: Usage:
+		Method: 
+		Usage: Sets the camera in First Person Shooter mode, if false it will work like an aircraft
 		Arguments:
 		Output: ---
 		*/
 		void SetFPS(bool a_bFPS = true);
-		/* Sets the camera in Perspective mode, if false it will work as an orthographic camera*/
+		
 		/*
-		Method: Usage:
+		Method: 
+		Usage: Sets the camera in Perspective mode, if false it will work as an orthographic camera
 		Arguments:
 		Output:
 		*/
 		void SetCameraMode(CAMERAMODE a_nMode = CAMERAMODE::CAMPERSP);
-		/* Returns the current value for the camera mode*/
+		
 		/*
-		Method: Usage:
+		Method: 
+		Usage: Returns the current value for the camera mode
 		Arguments: ---
 		Output:
 		*/
 		CAMERAMODE GetCameraMode(void);
 
-		/* Resets the value of the camera */
 		/*
-		Method: Usage:
+		Method: 
+		Usage: Resets the value of the camera
 		Arguments: ---
 		Output: ---
 		*/
 		void ResetCamera(void);
 
 	private:
-		/* Releases the object from memory */
 		/*
-		Method: Usage:
+		Method: 
+		Usage: Releases the object from memory
 		Arguments: ---
 		Output: ---
 		*/
 		void Release(void);
-		/* Initialize the object's fields */
 		/*
-		Method: Usage:
+		Method: 
+		Usage: Initialize the object's fields
 		Arguments: ---
 		Output: ---
 		*/
 		void Init(void);
-		/* Swaps the contents of the object with another object's content */
+		
 		/*
-		Method: Usage:
+		Method: 
+		Usage: Swaps the contents of the object with another object's content
 		Arguments:
 		Output: ---
 		*/

@@ -37,6 +37,7 @@ void AppClass::Update(void)
 	//Update the system so it knows how much time has passed since the last call
 	m_pSystem->UpdateTime();
 
+	//Call the Arcball method
 	ArcBall();
 
 	//Is the first person camera active?
@@ -59,7 +60,7 @@ void AppClass::Display(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the window
 
-	m_pMesh->RenderList(m_fMatrixArray, m_nObjects);//Rendering nObjects
+	m_pMesh->RenderList(m_pCameraMngr->GetProjectionMatrix(), m_pCameraMngr->GetViewMatrix(), m_fMatrixArray, m_nObjects);//Rendering nObjects
 
 	//Render the grid based on the camera's mode:
 	switch (m_pCameraMngr->GetCameraMode())
@@ -78,7 +79,7 @@ void AppClass::Display(void)
 		break;
 	}
 
-	m_pMeshMngr->Render();
+	m_pMeshMngr->Render(); //render the content of the MeshManager.
 
 	m_pGLSystem->GLSwapBuffers(); //Swaps the OpenGL buffers
 }
