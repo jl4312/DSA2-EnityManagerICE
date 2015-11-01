@@ -19,28 +19,15 @@ void MyCameraSingleton::ReleaseInstance()
 	}
 }
 
-void MyCameraSingleton::Init(void)
+void MyCameraSingleton::Init(vector3 a_v3Position, vector3 a_v3Target, vector3 a_v3Upward)
 {
 	m_bFPS = true;
-
 	m_nMode = CAMERAMODE::CAMPERSP;
-
 	m_fFOV = 45.0f;
-
 	m_v2NearFar = vector2(0.001f, 1000.0f);
-
-	m_v3Position = vector3(0.0f, 0.0f, 5.0f);
-	m_v3Target = vector3(0.0f, 0.0f, 0.0f);
-	m_v3Top = vector3(0.0f, 1.0f, 0.0f);
-
-	m_v3Forward = vector3(0.0f, 0.0f, -1.0f);
-	m_v3Upward = vector3(0.0f, 1.0f, 0.0f);
-	m_v3Rightward = vector3(1.0f, 0.0f, 0.0f);
-
 	m_v3PitchYawRoll = vector3(0.0f);
 
-	m_m4Projection = matrix4(1.0f);
-	m_m4View = matrix4(1.0f);
+	return SetPositionTargetAndView(a_v3Position, a_v3Target, a_v3Upward);
 }
 void MyCameraSingleton::Swap(MyCameraSingleton& other)
 {
@@ -69,43 +56,10 @@ void MyCameraSingleton::Release(void){}
 //The big 3
 MyCameraSingleton::MyCameraSingleton()
 {
-	Init();
-	CalculateProjection();
+	Init(vector3(0.0f, 0.0f, 5.0f), vector3(0.0f, 0.0f, 0.0f), vector3(0.0f, 1.0f, 0.0f));
 }
-MyCameraSingleton::MyCameraSingleton(MyCameraSingleton const& other)
-{
-	m_bFPS = other.m_bFPS;
-
-	m_nMode = other.m_nMode;
-
-	m_fFOV = other.m_fFOV;
-
-	m_v2NearFar = other.m_v2NearFar;
-
-	m_v3Position = other.m_v3Position;
-	m_v3Target = other.m_v3Target;
-	m_v3Top = other.m_v3Top;
-
-	m_v3Forward = other.m_v3Forward;
-	m_v3Upward = other.m_v3Upward;
-	m_v3Rightward = other.m_v3Rightward;
-
-	m_v3PitchYawRoll = other.m_v3PitchYawRoll;
-
-	m_m4Projection = other.m_m4Projection;
-	m_m4View = other.m_m4View;
-}
-MyCameraSingleton& MyCameraSingleton::operator=(MyCameraSingleton const& other)
-{
-	if (this != &other)
-	{
-		Release();
-		Init();
-		MyCameraSingleton temp(other);
-		Swap(temp);
-	}
-	return *this;
-}
+MyCameraSingleton::MyCameraSingleton(MyCameraSingleton const& other){}
+MyCameraSingleton& MyCameraSingleton::operator=(MyCameraSingleton const& other){ return *this; }
 MyCameraSingleton::~MyCameraSingleton(){ Release(); };
 //Accessors
 vector3 MyCameraSingleton::GetPosition(void){ return m_v3Position; }
@@ -118,29 +72,11 @@ void MyCameraSingleton::SetCameraMode(CAMERAMODE a_nMode){ m_nMode = a_nMode; Re
 CAMERAMODE MyCameraSingleton::GetCameraMode(void){ return m_nMode; }
 void MyCameraSingleton::SetPosition(vector3 a_v3Position)
 {
-	m_v3Position = a_v3Position;
-
-	m_v3Forward = glm::normalize(m_v3Target - m_v3Position);
-	m_v3Upward = glm::normalize(glm::cross(m_v3Rightward, m_v3Forward));
-	m_v3Rightward = glm::normalize(glm::cross(m_v3Forward, m_v3Upward));
-
-	m_v3Top = m_v3Position + m_v3Upward;
-	m_v3Target = m_v3Position + glm::normalize(m_v3Forward);
-
-	CalculateProjection();
+	return SetPositionTargetAndView(a_v3Position, m_v3Target, m_v3Upward);
 }
 void MyCameraSingleton::SetTarget(vector3 a_v3Target)
 {
-	m_v3Target = a_v3Target;
-
-	m_v3Forward = glm::normalize(m_v3Target - m_v3Position);
-	m_v3Upward = glm::normalize(glm::cross(m_v3Rightward, m_v3Forward));
-	m_v3Rightward = glm::normalize(glm::cross(m_v3Forward, m_v3Upward));
-	
-	m_v3Top = m_v3Position + m_v3Upward;
-	m_v3Target = m_v3Position + glm::normalize(m_v3Forward);
-
-	CalculateProjection();
+	return SetPositionTargetAndView(m_v3Position, a_v3Target, m_v3Upward);
 }
 matrix4 MyCameraSingleton::GetMVP(matrix4 a_m4ModelToWorld)
 {
@@ -278,10 +214,16 @@ void MyCameraSingleton::ChangeRoll(float a_fDegree)
 	if (m_nMode == CAMERAMODE::CAMPERSP)
 		m_v3PitchYawRoll.z += a_fDegree;
 }
-void MyCameraSingleton::SetPositionAndTarget(vector3 a_v3Position, vector3 a_v3Target)
+void MyCameraSingleton::SetPositionTargetAndView(vector3 a_v3Position, vector3 a_v3Target, vector3 a_v3Upward)
 {
-	SetPosition(a_v3Position);
-	SetTarget(a_v3Target);
+	m_v3Position = a_v3Position;
+	m_v3Target = a_v3Target;
+	m_v3Upward = glm::normalize(a_v3Upward);
+
+	m_v3Top = a_v3Position + m_v3Upward;
+	m_v3Forward = glm::normalize(m_v3Target - m_v3Position);
+	m_v3Rightward = glm::normalize(glm::cross(m_v3Forward, m_v3Upward));
+	CalculateProjection();
 }
 void MyCameraSingleton::ResetCamera(void)
 {

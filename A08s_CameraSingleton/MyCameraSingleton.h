@@ -177,7 +177,7 @@ public:
 	Arguments:
 	Output:
 	*/
-	void SetPositionAndTarget(vector3 a_v3Position, vector3 a_v3Target);
+	void SetPositionTargetAndView(vector3 a_v3Position, vector3 a_v3Target, vector3 a_v3Upward);
 
 	/*
 	Method: 
@@ -287,7 +287,7 @@ private:
 	Arguments: ---
 	Output: ---
 	*/
-	void Init(void);
+	void Init(vector3 a_v3Position, vector3 a_v3Target, vector3 a_v3Upward);
 		
 	/*
 	Method: 

@@ -6,7 +6,7 @@ void AppClass::InitWindow(String a_sWindowName)
 
 void AppClass::InitVariables(void)
 {
-	m_pCameraMngr->SetPositionAndTarget(vector3(0.0f, 0.0f, 15.0f), vector3(0.0f));
+	m_pCameraMngr->SetPositionTargetAndView(vector3(0.0f, 0.0f, 15.0f), vector3(0.0f), REAXISY);
 
 	// Color of the screen
 	m_v4ClearColor = vector4(REBLACK, 1); // Set the clear color to black

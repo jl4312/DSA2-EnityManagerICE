@@ -10,7 +10,7 @@ void AppClass::InitWindow(String a_sWindowName)
 void AppClass::InitVariables(void)
 {
 	//Setting the position in which the camera is looking and its interest point
-	m_pCameraMngr->SetPositionAndTarget(vector3(12.12f, 28.52f, 11.34f), vector3(0.0f));
+	m_pCameraMngr->SetPositionTargetAndView(vector3(12.12f, 28.52f, 11.34f), vector3(0.0f), REAXISY);
 
 	//Setting the color to black
 	m_v4ClearColor = vector4(0.0f);

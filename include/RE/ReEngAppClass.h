@@ -258,7 +258,7 @@ namespace ReEng
 			
 			// Setting the camera position.
 			m_pCameraMngr = CameraManagerSingleton::GetInstance();
-			m_pCameraMngr->SetPosition(vector3(0.0f, 0.5f, 10.0f));
+			m_pCameraMngr->SetPosition(vector3(0.0f, 0.0f, 10.0f));
 
 			// Initialize the App Variables
 			InitVariables();
