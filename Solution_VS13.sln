@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "00_Sandbox", "00_Sandbox\00_Sandbox.vcxproj", "{0D690B4A-EEED-45DD-9651-D80BB36C0C76}"
 EndProject
@@ -32,6 +32,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "A08s_CameraSingleton", "A08s_CameraSingleton\A08s_CameraSingleton.vcxproj", "{84FC40DA-0076-4552-B620-FB76B17655E9}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLFW_Example", "GLFW_Example\GLFW_Example.vcxproj", "{49647803-64C5-4742-BCB2-C8DC671B25EF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "A10s_BoundingObjectSingleton", "A10s_BoundingObjectSingleton\A10s_BoundingObjectSingleton.vcxproj", "{D7A2D85D-6B79-4FDE-A5E1-76207424961D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{49647803-64C5-4742-BCB2-C8DC671B25EF}.Debug|Win32.Build.0 = Debug|Win32
 		{49647803-64C5-4742-BCB2-C8DC671B25EF}.Release|Win32.ActiveCfg = Release|Win32
 		{49647803-64C5-4742-BCB2-C8DC671B25EF}.Release|Win32.Build.0 = Release|Win32
+		{D7A2D85D-6B79-4FDE-A5E1-76207424961D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D7A2D85D-6B79-4FDE-A5E1-76207424961D}.Debug|Win32.Build.0 = Debug|Win32
+		{D7A2D85D-6B79-4FDE-A5E1-76207424961D}.Release|Win32.ActiveCfg = Release|Win32
+		{D7A2D85D-6B79-4FDE-A5E1-76207424961D}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
