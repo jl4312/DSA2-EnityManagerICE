@@ -201,6 +201,12 @@ void MyBOManager::DisplayOriented(int a_nIndex, vector3 a_v3Color)
 		}
 	}
 }
+
+void MyBOManager::DisplayReAlligned(String a_sName, vector3 a_v3Color)
+{
+	int nIndex = GetIndex(a_sName);
+	DisplayReAlligned(nIndex, a_v3Color);
+}
 void MyBOManager::DisplayReAlligned(int a_nIndex, vector3 a_v3Color)
 {
 	//If the index is larger than the number of objects stored return with no changes

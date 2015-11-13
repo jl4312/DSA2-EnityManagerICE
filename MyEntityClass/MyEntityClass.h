@@ -1,7 +1,7 @@
 #ifndef __MYENTITY_H_
 #define __MYENTITY_H_
 
-#include "AppClass.h"
+#include "MyBOManager.h"
 
 class MyEntityClass
 {
@@ -12,7 +12,10 @@ class MyEntityClass
 	vector3 m_v3Velocity = vector3();
 	vector3 m_v3Acceleration = vector3();
 
+	float m_fMass = 1.0f;
 	float m_fMaxAcc = 10.0f;
+
+	String m_sName = "";
 
 	MyBOManager* m_pColliderManager = nullptr;
 	MeshManagerSingleton* m_pMeshManager = nullptr;
@@ -24,7 +27,7 @@ public:
 	Arguments: ---
 	Output: class object
 	*/
-	MyEntityClass();
+	MyEntityClass(String a_sName);
 
 	/*
 	Method: MyEntityClass
@@ -49,6 +52,12 @@ public:
 	Output: class object
 	*/
 	~MyEntityClass();
+
+	void Update(void);
+
+	void SetMass(float a_fMass);
+	void SetPosition(vector3 a_v3Position);
+	void SetVelocity(vector3 a_v3Velocity);
 
 protected:
 	/*

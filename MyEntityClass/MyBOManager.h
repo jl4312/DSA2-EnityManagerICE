@@ -90,6 +90,7 @@ public:
 	Output: ---
 	*/
 	void DisplayReAlligned(int a_nIndex = -1, vector3 a_v3Color = REDEFAULT);
+	void DisplayReAlligned(String a_sName, vector3 a_v3Color = REDEFAULT);
 
 	/*
 	Method: GetCollingVector

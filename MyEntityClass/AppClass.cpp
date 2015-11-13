@@ -18,6 +18,18 @@ void AppClass::InitVariables(void)
 	//Load Models
 	m_pMeshMngr->LoadModel("Minecraft\\MC_Steve.obj", "Steve");
 	m_pMeshMngr->LoadModel("Minecraft\\MC_Creeper.obj", "Creeper");
+
+	m_pSteve = new MyEntityClass("Steve");
+	m_pCreeper = new MyEntityClass("Creeper");
+
+	m_pSteve->SetPosition(vector3(-5.0f, 0.0f, 0.0f));
+	m_pCreeper->SetPosition(vector3(-5.0f, 2.0f, 0.0f));
+
+	m_pSteve->SetVelocity(REAXISX * 0.01f);
+	m_pCreeper->SetVelocity(REAXISX * 0.01f);
+
+	m_pSteve->SetMass(1.3f);
+	m_pCreeper->SetMass(0.7f);
 }
 
 void AppClass::Update(void)
@@ -34,13 +46,14 @@ void AppClass::Update(void)
 
 	ArcBall();
 
+	m_pSteve->Update();
+	m_pCreeper->Update();
+
 	//Set the model matrices for both objects and Bounding Spheres
-	m_pMeshMngr->SetModelMatrix(glm::translate(m_v3O1) * ToMatrix4(m_qArcBall), "Steve");
-	m_pMeshMngr->SetModelMatrix(glm::translate(m_v3O2), "Creeper");
-
-
+	//m_pMeshMngr->SetModelMatrix(glm::translate(m_v3O1) * ToMatrix4(m_qArcBall), "Steve");
+	//m_pMeshMngr->SetModelMatrix(glm::translate(m_v3O2), "Creeper");
 	//Adds all loaded instance to the render list
-	m_pMeshMngr->AddInstanceToRenderList("ALL");
+	//m_pMeshMngr->AddInstanceToRenderList("ALL");
 
 	//Indicate the FPS
 	int nFPS = m_pSystem->GetFPS();
