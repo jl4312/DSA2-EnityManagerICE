@@ -4,7 +4,7 @@ modified by labigm@rit.edu
 --------------------------------------------------------------------------------------------------*/
 // Include standard headers
 #include "Main.h"
-
+ 
 GLFWwindow* window;
 
 int main(void)

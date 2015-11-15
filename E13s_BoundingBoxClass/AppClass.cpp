@@ -16,8 +16,8 @@ void AppClass::InitVariables(void)
 	m_v3O2 = vector3(2.5f, 0.0f, 0.0f);
 
 	//Load Models
-	m_pMeshMngr->LoadModel("Minecraft\\MC_Steve.obj", "Steve");
-	m_pMeshMngr->LoadModel("Minecraft\\MC_Creeper.obj", "Creeper");
+	m_pMeshMngr->LoadModel("Minecraft\\Steve.obj", "Steve");
+	m_pMeshMngr->LoadModel("Minecraft\\Creeper.obj", "Creeper");
 
 	m_pBB1 = new MyBoundingBoxClass(m_pMeshMngr->GetVertexList("Steve"));
 	m_pBB2 = new MyBoundingBoxClass(m_pMeshMngr->GetVertexList("Creeper"));

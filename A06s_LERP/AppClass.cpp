@@ -6,7 +6,7 @@ void AppClass::InitWindow(String a_sWindowName)
 
 void AppClass::InitVariables(void)
 {
-	m_pCameraMngr->SetPositionTargetAndView(vector3(0.0f, 0.0f, 15.0f), vector3(0.0f), REAXISY);
+	m_pCameraMngr->SetPositionTargetAndView(vector3(0.0f, 0.0f, 15.0f), ZERO_V3, REAXISY);
 
 	// Color of the screen
 	m_v4ClearColor = vector4(REBLACK, 1); // Set the clear color to black
@@ -52,7 +52,7 @@ void AppClass::Update(void)
 	double fTimeSpan = m_pSystem->LapClock();
 
 	//cumulative time
-	static float fRunTime = 0.0f;
+	static double fRunTime = 0.0f;
 	fRunTime += fTimeSpan;
 
 	static int nIndex = 0;
@@ -80,7 +80,7 @@ void AppClass::Update(void)
 		v3Vector2 = m_lPositions[nIndex + 1];
 	}
 
-	float fPercent = MapValue(fRunTime, 0.0f, fDuration, 0.0f, 1.0f);
+	float fPercent = MapValue(static_cast<float>(fRunTime), 0.0f, fDuration, 0.0f, 1.0f);
 	vector3 v3Position = glm::lerp(v3Vector1, v3Vector2, fPercent);
 	m_pMeshMngr->SetModelMatrix(glm::translate(v3Position), "WallEye");
 

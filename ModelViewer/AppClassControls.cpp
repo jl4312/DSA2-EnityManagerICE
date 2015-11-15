@@ -101,7 +101,12 @@ void AppClass::ProcessKeyboard(void)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F5))
 	{
 		FileReaderClass pFile;
-		String sFileName = pFile.RetriveFileNameFromExplorer(L"OBJ Files (*.obj)\0*.obj\0ATO Files (*.ato)\0*.ato\0BTO Files (*.bto)\0*.bto\0", L"obj");
+#ifdef USING_FBXSDK
+		String sFileName = pFile.RetriveFileNameFromExplorer(L"FBX Files (*.fbx)\0*.fbx\0BTO Files (*.bto)\0*.bto\0ATO Files (*.ato)\0*.ato\0OBJ Files (*.obj)\0*.obj\0", L"fbx");
+#else
+		String sFileName = pFile.RetriveFileNameFromExplorer(L"BTO Files (*.bto)\0*.bto\0ATO Files (*.ato)\0*.ato\0OBJ Files (*.obj)\0*.obj\0", L"bto");
+#endif
+
 		if (sFileName != "")
 		{
 			bool bThreaded = m_pSystem->GetThreaded();
@@ -120,7 +125,10 @@ void AppClass::ProcessKeyboard(void)
 				float fSize = v3HalfWidth.x;
 				if (fSize < v3HalfWidth.y)
 					fSize = v3HalfWidth.y;
-				m_pCameraMngr->SetPositionTargetAndView(v3Centroid + REAXISZ * 2.5f * fSize, v3Centroid, REAXISY);
+				if (fSize < v3HalfWidth.z)
+					fSize = v3HalfWidth.z;
+				m_pCameraMngr->SetPositionTargetAndView(v3Centroid + REAXISZ * fSize * 3.5f, v3Centroid, REAXISY);
+				m_qArcBall = quaternion();
 			}
 
 			m_pSystem->SetThreaded(bThreaded);
@@ -134,9 +142,13 @@ void AppClass::ProcessKeyboard(void)
 			m_pSystem->SetThreaded(false);
 			FileReaderClass pFile;
 			String sFileName = pFile.IndicateFileNameOnExplorer(L"BTO Files (*.bto)\0*.bto\0ATO Files (*.ato)\0*.ato\0All Files (*.*)\0*.*\0", L"bto");
+			String sExtension = FileReaderClass::GetExtension(sFileName);
 			if (sFileName != "")
 			{
-				m_pMeshMngr->SaveModel(sFileName, m_sSelectedObject, true);
+				if(sExtension == "bto")
+					m_pMeshMngr->SaveModel(sFileName, BTO, m_sSelectedObject, true);
+				else
+					m_pMeshMngr->SaveModel(sFileName, ATO, m_sSelectedObject, true);
 			}
 
 			m_pSystem->SetThreaded(bThreaded);

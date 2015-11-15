@@ -12,7 +12,7 @@ void AppClass::InitWindow(String a_sWindowName)
 void AppClass::InitVariables(void)
 {
 	//m_pMeshMngr->LoadModel("Lego\\Unikitty.bto", "Unikitty");
-	m_pMeshMngr->LoadModel("Minecraft\\MC_Creeper.obj", "Creeper");
+	m_pMeshMngr->LoadModel("Minecraft\\Creeper.obj", "Creeper");
 }
 
 void AppClass::Update(void)

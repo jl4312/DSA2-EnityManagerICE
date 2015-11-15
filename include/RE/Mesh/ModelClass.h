@@ -13,6 +13,14 @@ Date: 2015/06
 
 #include "RE\physics\BoundingObjectClass.h"
 
+#ifdef USING_FBXSDK
+#include <fbxsdk.h>
+#ifdef IOS_REF
+#undef  IOS_REF
+#define IOS_REF (*(pManager->GetIOSettings()))
+#endif
+#endif
+
 namespace ReEng
 {
 
@@ -22,7 +30,11 @@ class ReEngDLL ModelClass
 	bool m_bBinded = false;		//Binded flag
 	bool m_bVisible = true;	//Visibility flag
 	bool m_bCollidable = false;	//Collidable flag
-
+#ifdef USING_FBXSDK
+	bool m_bUsingFBXSDK = true; //FBX flag
+#else
+	bool m_bUsingFBXSDK = false; //FBX flag
+#endif
 	uint m_nMaterials = 0;	//number of materials
 	uint m_nGroupCount = 0;		//Number of groups
 	uint m_nFrameCount = 0;		//Number of frames
@@ -54,21 +66,24 @@ public:
 	ModelClass(void);
 	/* Copy Constructor */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
 	ModelClass(const ModelClass& other);
 	/* Copy Assignment operator*/
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
 	ModelClass& operator=(const ModelClass& other);
 	/* Destructor */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments: ---
 	Output: ---
 	*/
@@ -76,7 +91,8 @@ public:
 	
 	/* Releases the object from memory */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments: ---
 	Output: ---
 	*/
@@ -84,7 +100,8 @@ public:
 
 	/* Loads an obj file in memory */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
@@ -92,7 +109,8 @@ public:
 
 	/* Swaps the information of one model object into another */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output: ---
 	*/
@@ -100,14 +118,16 @@ public:
 
 	/* Asks the model for its number of groups */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments: ---
 	Output:
 	*/
 	uint GetGroupCount(void);
 	/* Asks the model for its name */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments: ---
 	Output:
 	*/
@@ -117,14 +137,16 @@ public:
 
 	/* Asks the Model for a Group by index */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
 	GroupClass* GetGroup(uint a_nIndex);
 	/* Asks the model identify the index of a group by name, -1 if not found*/
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
@@ -132,7 +154,8 @@ public:
 
 	/* Asks the model if its done loading */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments: ---
 	Output:
 	*/
@@ -140,7 +163,8 @@ public:
 
 	/* Create a copy of a group by index */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
@@ -148,7 +172,8 @@ public:
 
 	/* Binds the Model for opengl 3.x*/
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments: ---
 	Output: ---
 	*/
@@ -156,14 +181,16 @@ public:
 
 	/* Sets the Hit Points of the model */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output: ---
 	*/
 	void SetHP(int a_nHP);
 	/* Asks the model for its Hit Points*/
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments: ---
 	Output:
 	*/
@@ -171,14 +198,16 @@ public:
 
 	/* Sets the model to be collidable */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output: ---
 	*/
 	void SetCollidable(bool a_bCollidable);
 	/* Asks the model if its collidable */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments: ---
 	Output:
 	*/
@@ -186,14 +215,16 @@ public:
 
 	/* Sets the model to be visible */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output: ---
 	*/
 	void SetVisible(bool a_bVisible);
 	/* Asks the model if its visible */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
@@ -206,7 +237,8 @@ public:
 			a_nMesh -> -1 for all shapes
 	*/
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
@@ -214,7 +246,8 @@ public:
 
 	/* Get the number of frames of animation in this model */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments: ---
 	Output:
 	*/
@@ -222,7 +255,8 @@ public:
 
 	/* Asks the model for its sequence List */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments: ---
 	Output:
 	*/
@@ -230,7 +264,8 @@ public:
 
 	/* Asks the model for a sequence from its List of sequences */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
@@ -238,21 +273,24 @@ public:
 
 	/* Asks the model for its number of states*/
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments: ---
 	Output:
 	*/
 	uint GetStateCount(void);
 	/* Asks the model for its number of states*/
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments: ---
 	Output:
 	*/
 	uint GetSequenceCount(void);
 	/* Asks the model for a state by index */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
@@ -260,7 +298,8 @@ public:
 
 	/* Asks the model the index of the provided state, -1 if not found */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
@@ -268,7 +307,8 @@ public:
 
 	/* Asks the model the index of the provided state, -1 if not found */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
@@ -280,7 +320,8 @@ public:
 			a_nFrame -> -1 for the BO that contain the model at all frames
 	*/
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
@@ -288,7 +329,8 @@ public:
 
 	/* Loads a model from an OBJ file*/
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
@@ -296,23 +338,37 @@ public:
 
 	/* Loads a model from an ATO file*/
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
 	REERRORS LoadATO(String a_sFileName, bool a_bAbsoluteRoute = false);
 
-	/* Loads a model from an ATO file*/
+	/* Loads a model from an BTO file*/
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
 	REERRORS LoadBTO(String a_sFileName, bool a_bAbsoluteRoute = false);
 
+#ifdef USING_FBXSDK
+	/* Loads a model from an BTO file*/
+	/*
+	Method: 
+	Usage:
+	Arguments:
+	Output:
+	*/
+	REERRORS LoadFBX(String a_sFileName, bool a_bAbsoluteRoute = false);
+#endif
+
 	/* Saves a loaded model as an ATO file do not add the extension unless absolute route*/
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
@@ -320,7 +376,8 @@ public:
 
 	/* Saves a loaded model as an BTO file do not add the extension unless absolute route*/
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
@@ -329,42 +386,48 @@ public:
 private:
 	/* Initializates the model object */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments: ---
 	Output: ---
 	*/
 	void Init(void);
 	/* Loads the material file for this model */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
 	REERRORS LoadMTL(String a_sFileName);
 	/* Loads the hierarchy file for this model */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
 	REERRORS LoadHIE(String a_sFileName);
 	/* Loads the animation file for this model */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
 	REERRORS LoadANIM(String a_sFileName);
 	/* Loads the sequence file for this model */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
 	REERRORS LoadSEQ(String a_sFileName);
 	/* Loads the state file for this model */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
@@ -372,7 +435,8 @@ private:
 
 	/* Asks the model for a group by name*/
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
@@ -380,19 +444,66 @@ private:
 
 	/* Asks the model for a state by name */
 	/*
-	Method: Usage:
+	Method: 
+	Usage:
 	Arguments:
 	Output:
 	*/
 	StateClass* GetState(String a_sName);
 
 	/*
-	Method: Usage:
+	Method:
+	Usage:
 	Arguments:
 	Output:
 	*/
 	vector3 RoundVector(vector3 a_v3Vector, float fMargin = 0.0001f);
 
+#ifdef USING_FBXSDK
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output:
+	*/
+	void FBXGetExtremeFrames(FbxNode* pNode, int& nStart, int& nEnd);
+
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output:
+	*/
+	void FBXProcessGroupAnimation(FbxNode* pNode, GroupClass* pGroup);
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output:
+	*/
+	void FBXProcessEmpty(FbxNode* pNode);
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output:
+	*/
+	void FBXProcessMesh(FbxNode* pNode);
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output:
+	*/
+	void FBXProcessNode(FbxNode* pNode);
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output:
+	*/
+	bool FBXProcessScene(FbxScene* pScene);
+#endif
 };
 
 EXPIMP_TEMPLATE template class ReEngDLL std::vector<ModelClass>;

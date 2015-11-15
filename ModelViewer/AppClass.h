@@ -7,7 +7,7 @@ Date: 2015/09
 
 #include "RE\ReEngAppClass.h"
 #include <SFML\Graphics.hpp>
-//#include <chrono>
+#define USING_FBXSDK
 
 using namespace ReEng; //Using ReEng namespace to use all the classes in the dll
 

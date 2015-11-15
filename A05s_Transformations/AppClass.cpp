@@ -23,7 +23,7 @@ void AppClass::InitVariables(void)
 void AppClass::Update(void)
 {
 	//Sets the camera
-	m_pCameraMngr->SetPositionTargetAndView(vector3(0.0f, 25.0f, 0.0f), vector3(0.0f, 0.0f, 0.0f), REAXISY);
+	m_pCameraMngr->SetPositionTargetAndView(vector3(0.0f, 25.0f, 0.0f), vector3(0.0f, 0.0f, 0.0f), -REAXISZ);
 
 	//Update the system's time
 	m_pSystem->UpdateTime();

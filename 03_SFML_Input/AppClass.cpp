@@ -8,7 +8,7 @@ void AppClass::InitWindow(String a_sWindowName)
 void AppClass::InitVariables(void)
 {
 	//Load a model into memory
-	m_pMeshMngr->LoadModel("Minecraft\\MC_Steve.obj", "Steve");
+	m_pMeshMngr->LoadModel("Minecraft\\Steve.obj", "Steve");
 }
 
 void AppClass::Update(void)

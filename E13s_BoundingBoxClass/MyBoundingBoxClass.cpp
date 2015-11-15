@@ -73,9 +73,12 @@ MyBoundingBoxClass::MyBoundingBoxClass(std::vector<vector3> a_lVectorList)
 	m_v3Center = (m_v3Min + m_v3Max) / 2.0f;
 
 	//we calculate the distance between all the values of min and max vectors
-	m_v3HalfWidth.x = glm::distance(vector3(m_v3Min.x, 0.0f, 0.0f), vector3(m_v3Max.x, 0.0f, 0.0f)) / 2.0f;
-	m_v3HalfWidth.y = glm::distance(vector3(0.0f, m_v3Min.y, 0.0f), vector3(0.0f, m_v3Max.y, 0.0f)) / 2.0f;
-	m_v3HalfWidth.z = glm::distance(vector3(0.0f, 0.0f, m_v3Min.z), vector3(0.0f, 0.0f, m_v3Max.z)) / 2.0f;
+	m_v3HalfWidth = (m_v3Max - m_v3Min) / 2.0f;
+
+	m_v3MaxG = m_v3Max;
+	m_v3MinG = m_v3Min;
+	m_v3CenterG = m_v3Center;
+	m_v3HalfWidthG = m_v3HalfWidth;
 	
 }
 MyBoundingBoxClass::MyBoundingBoxClass(MyBoundingBoxClass const& other)
@@ -153,10 +156,7 @@ void MyBoundingBoxClass::SetModelMatrix(matrix4 a_m4ToWorld)
 	m_v3CenterG = (m_v3MinG + m_v3MaxG) / 2.0f;
 
 	//we calculate the distance between all the values of min and max vectors
-	m_v3HalfWidthG.x = glm::distance(vector3(m_v3MinG.x, 0.0f, 0.0f), vector3(m_v3MaxG.x, 0.0f, 0.0f)) / 2.0f;
-	m_v3HalfWidthG.y = glm::distance(vector3(0.0f, m_v3MinG.y, 0.0f), vector3(0.0f, m_v3MaxG.y, 0.0f)) / 2.0f;
-	m_v3HalfWidthG.z = glm::distance(vector3(0.0f, 0.0f, m_v3MinG.z), vector3(0.0f, 0.0f, m_v3MaxG.z)) / 2.0f;
-
+	m_v3HalfWidthG = (m_v3MaxG - m_v3MinG) / 2.0f;
 }
 matrix4 MyBoundingBoxClass::GetModelMatrix(void){ return m_m4ToWorld; }
 vector3 MyBoundingBoxClass::GetCenterLocal(void){ return m_v3Center; }

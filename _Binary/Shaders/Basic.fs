@@ -13,7 +13,7 @@ void main()
 {
 	if( nTexture == 1 || nTexture == 3 || nTexture == 5 || nTexture == 7 )
 	{
-		Fragment = texture2D( TextureID, UV );
+		Fragment = texture( TextureID, UV );
 	}
 	else
 	{

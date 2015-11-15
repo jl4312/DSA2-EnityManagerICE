@@ -10,7 +10,7 @@ void AppClass::InitWindow(String a_sWindowName)
 void AppClass::InitVariables(void)
 {
 	//Setting the position in which the camera is looking and its interest point
-	m_pCameraMngr->SetPositionTargetAndView(vector3(12.12f, 28.52f, 11.34f), vector3(0.0f), REAXISY);
+	m_pCameraMngr->SetPositionTargetAndView(vector3(12.12f, 28.52f, 11.34f), ZERO_V3, REAXISY);
 
 	//Setting the color to black
 	m_v4ClearColor = vector4(0.0f);
@@ -39,7 +39,7 @@ void AppClass::Update(void)
 	//Getting the time between calls
 	double fCallTime = m_pSystem->LapClock();
 	//Counting the cumulative time
-	static float fRunTime = 0.0f;
+	static double fRunTime = 0.0f;
 	fRunTime += fCallTime;
 
 	//Starting with 3 orientations as 0 PI and 2 PI are basically the same
@@ -49,12 +49,12 @@ void AppClass::Update(void)
 	quaternion qFullRotation = quaternion(vector3(0.0f, 2 * PI, 0.0f));
 
 	//Earth Orbit
-	static float fEarthOrbTime = 0.0f; //How much time has passed for the Earth?
+	static double fEarthOrbTime = 0.0f; //How much time has passed for the Earth?
 	fEarthOrbTime += fCallTime; //keep the cumulative
 	static int nEarthOrbits = 0; //count the number of orbits
 	static bool nEarthOrbStep = false; //Route one
-	float fEarthHalfOrbTime = 182.5f * m_fDay; //Earths orbit around the sun lasts 365 days / half the time for 2 stops
-	float fEarthOrbPerc = MapValue(fEarthOrbTime, 0.0f, fEarthHalfOrbTime, 0.0f, 1.0f); //How much of the day we have (in a reason from 0 to 1)
+	double fEarthHalfOrbTime = 182.5f * m_fDay; //Earths orbit around the sun lasts 365 days / half the time for 2 stops
+	float fEarthOrbPerc = MapValue(static_cast<float>(fEarthOrbTime), 0.0f, static_cast<float>(fEarthHalfOrbTime), 0.0f, 1.0f); //How much of the day we have (in a reason from 0 to 1)
 
 	quaternion qEarthOrb; //Store the current orientation of the earth
 	if (!nEarthOrbStep) //are we in the first stop?
@@ -72,12 +72,12 @@ void AppClass::Update(void)
 	}
 
 	//Earth Revolution (See coments for Earth Orbit, its the same procedure)
-	static float fEarthRevTime = 0.0f;
+	static double fEarthRevTime = 0.0f;
 	fEarthRevTime += fCallTime;
 	static int nEarthRevolutions = 0;
 	static bool nEarthRevStep = false;
 	float fEarthHalfRevTime = 0.5f * m_fDay; // Move for Half a day
-	float fEarthRevPerc = MapValue(fEarthRevTime, 0.0f, fEarthHalfRevTime, 0.0f, 1.0f);
+	float fEarthRevPerc = MapValue(static_cast<float>(fEarthRevTime), 0.0f, fEarthHalfRevTime, 0.0f, 1.0f);
 
 	quaternion qEarthRev;
 	if (!nEarthRevStep)
@@ -94,12 +94,12 @@ void AppClass::Update(void)
 	}
 
 	//Moon Orbit (See coments for Earth Orbit, its the same procedure)
-	static float fMoonOrbTime = 0.0f;
+	static double fMoonOrbTime = 0.0f;
 	fMoonOrbTime += fCallTime;
 	static int nMoonOrbits = 0;
 	static bool nMoonOrbStep = false;
 	float fMoonHalfOrbTime = 14.0f * m_fDay; //Moon's orbit is 28 earth days, so half the time for half a route
-	float fMoonOrbPerc = MapValue(fMoonOrbTime, 0.0f, fMoonHalfOrbTime, 0.0f, 1.0f);
+	float fMoonOrbPerc = MapValue(static_cast<float>(fMoonOrbTime), 0.0f, fMoonHalfOrbTime, 0.0f, 1.0f);
 
 	quaternion qMoonOrb;
 	if (!nMoonOrbStep)

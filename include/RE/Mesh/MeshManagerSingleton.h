@@ -42,11 +42,17 @@ public:
 
 	/* Saves the specified model file, needs to specify the file extension (ATO or BTO) */
 	/*
-	Method: Usage:
+	Method: SaveModel
+	Usage: Will translate a model in the list to the specified format
 	Arguments:
-	Output:
+		String a_sFileName -> Name of the file
+		FORMAT a_Format -> Extension of the file FORMAT::ATO or FORMAT::BTO
+		String a_sInstanceName -> Name of the instance to save
+		bool a_bAbsoluteRoute = false -> whether the filename specifies an absolute route or not
+	Output: REERRORS -> ERROR_FREE if everything went right, reason for failure otherwise
 	*/
 	REERRORS SaveModel(String a_sFileName,
+						FORMAT a_Format,
 						String a_sInstanceName,
 						bool a_bAbsoluteRoute = false);
 

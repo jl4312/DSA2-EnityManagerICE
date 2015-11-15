@@ -137,7 +137,7 @@ public:
 	Arguments:
 	Output: ---
 	*/
-	void AddShape(String a_sName);
+	void AddMesh(String a_sName);
 
 	/*
 	Method: 

@@ -1,7 +1,7 @@
 #include "AppClass.h"
 void AppClass::InitWindow(String a_sWindowName)
 {
-	super::InitWindow("MyBoundingObjectManager example"); // Window Name
+	super::InitWindow("Separation Axis Test"); // Window Name 
 
 	// Set the clear color based on Microsoft's CornflowerBlue (default in XNA)
 	//if this line is in Init Application it will depend on the .cfg file, if it
@@ -16,8 +16,8 @@ void AppClass::InitVariables(void)
 	m_v3O2 = vector3(2.5f, 0.0f, 0.0f);
 
 	//Load Models
-	m_pMeshMngr->LoadModel("Minecraft\\MC_Steve.obj", "Steve");
-	m_pMeshMngr->LoadModel("Minecraft\\MC_Creeper.obj", "Creeper");
+	m_pMeshMngr->LoadModel("Minecraft\\Steve.obj", "Steve");
+	m_pMeshMngr->LoadModel("Minecraft\\Creeper.obj", "Creeper");
 
 	m_pBOMngr = MyBOManager::GetInstance();
 	m_pBOMngr->AddObject(m_pMeshMngr->GetVertexList("Steve"), "Steve");
