@@ -77,11 +77,24 @@ MyEntityClass::~MyEntityClass()
 }
 void MyEntityClass::SetPosition(vector3 a_v3Position){ m_v3Position = a_v3Position; }
 void MyEntityClass::SetVelocity(vector3 a_v3Velocity){ m_v3Velocity = a_v3Velocity; }
-void MyEntityClass::SetMass(float a_fMass){ m_fMass = a_fMass; }
+void MyEntityClass::SetMass(float a_fMass) {
+	if (a_fMass == 0) {
+		m_fMass = 0.0001f;
+	} else {
+		m_fMass = a_fMass;
+	}
+}
+void MyEntityClass::SetAcceleration(vector3 a_v3Acceleration) { m_v3Acceleration = a_v3Acceleration; }
+void MyEntityClass::SetMaxAcceleration(float value) { m_fMaxAcc = value; }
 
 void MyEntityClass::Update(void)
 {
-	m_v3Position = m_v3Position + (m_v3Velocity * m_fMass);
+	vector3 v3Acceleration = m_v3Acceleration / m_fMass;
+	v3Acceleration = glm::clamp(v3Acceleration, -m_fMaxAcc, m_fMaxAcc);
+
+	m_v3Velocity = m_v3Velocity + (v3Acceleration);
+	m_v3Position = m_v3Position + m_v3Velocity;
+
 	matrix4 m4ToWorld = glm::translate(m_v3Position);
 	m_pMeshManager->AddInstanceToRenderList(m_sName);
 	m_pMeshManager->SetModelMatrix(m4ToWorld, m_sName);

@@ -58,6 +58,8 @@ public:
 	void SetMass(float a_fMass);
 	void SetPosition(vector3 a_v3Position);
 	void SetVelocity(vector3 a_v3Velocity);
+	void SetAcceleration(vector3 a_v3Acceleration);
+	void SetMaxAcceleration(float value);
 
 protected:
 	/*

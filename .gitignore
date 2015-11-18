@@ -7,6 +7,7 @@ _Binary/ReEng_d.dll
 _Binary/Macross*.*
 Z_DELETE
 
+=======
 # Compiled Object files
 *.slo
 *.lo
@@ -14,6 +15,8 @@ Z_DELETE
 
 # Visual Studio specifics
 *.suo
+=======
+*.obj
 
 # Precompiled Headers
 *.gch
@@ -22,6 +25,8 @@ Z_DELETE
 # Compiled Dynamic libraries
 *.so
 *.dylib
+=======
+*.dll
 
 # Fortran module files
 *.mod
@@ -36,3 +41,10 @@ Z_DELETE
 *.app
 *.sdf
 *.opensdf
+=======
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app

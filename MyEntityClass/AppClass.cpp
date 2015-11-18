@@ -12,6 +12,7 @@ void AppClass::InitWindow(String a_sWindowName)
 void AppClass::InitVariables(void)
 {
 	//Initialize positions
+	m_pCameraMngr->SetPositionTargetAndView(REAXISZ * 30.0f, vector3(0.0f), REAXISY);
 	m_v3O1 = vector3(-2.5f, 0.0f, 0.0f);
 	m_v3O2 = vector3(2.5f, 0.0f, 0.0f);
 
@@ -19,17 +20,25 @@ void AppClass::InitVariables(void)
 	m_pMeshMngr->LoadModel("Minecraft\\MC_Steve.obj", "Steve");
 	m_pMeshMngr->LoadModel("Minecraft\\MC_Creeper.obj", "Creeper");
 
+	// steve
 	m_pSteve = new MyEntityClass("Steve");
+
+	m_pSteve->SetPosition(vector3(-15.0f, 0.0f, 0.0f));
+	m_pSteve->SetVelocity(REAXISX * 0.01f);
+	m_pSteve->SetAcceleration(REAXISX * 0.01f);
+	
+	m_pSteve->SetMass(1.3f);
+	m_pSteve->SetMaxAcceleration(0.2f);
+
+	// creeper
 	m_pCreeper = new MyEntityClass("Creeper");
 
-	m_pSteve->SetPosition(vector3(-5.0f, 0.0f, 0.0f));
-	m_pCreeper->SetPosition(vector3(-5.0f, 2.0f, 0.0f));
-
-	m_pSteve->SetVelocity(REAXISX * 0.01f);
-	m_pCreeper->SetVelocity(REAXISX * 0.01f);
-
-	m_pSteve->SetMass(1.3f);
+	m_pCreeper->SetPosition(vector3(15.0f, 2.0f, 0.0f));
+	m_pCreeper->SetVelocity(REAXISX * -0.01f);
+	m_pCreeper->SetAcceleration(REAXISX * -0.01f);
+	
 	m_pCreeper->SetMass(0.7f);
+	m_pCreeper->SetMaxAcceleration(0.2f);
 }
 
 void AppClass::Update(void)
